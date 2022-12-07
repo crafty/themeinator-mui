@@ -16,8 +16,6 @@
     "@mui/material": "^5.10.11",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
-    "primeicons": "^6.0.1",
-    "primereact": "^8.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
