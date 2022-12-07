@@ -99,21 +99,6 @@ const Sidebar = () => {
       <Flox
         gap="10px"
         jc={isCollapsed && "center"}
-        onClick={(e) => handleNavigate(e, "prime-elements")}
-      >
-        <ViewQuiltIcon
-          fontSize={iconSize}
-          sx={{
-            color:
-              pathname === "/prime-elements" ? palette.primary.main : "inherit",
-          }}
-        />
-        {!isCollapsed && <Typography variant="h6">Prime Elements</Typography>}
-      </Flox>
-
-      <Flox
-        gap="10px"
-        jc={isCollapsed && "center"}
         onClick={(e) => handleNavigate(e, "custom-elements")}
       >
         <ExtensionIcon

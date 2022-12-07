@@ -6,13 +6,7 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import Dashboard from "./components/dashboard";
 
-import {
-  CustomElements,
-  GenerateTheme,
-  MuiView,
-  PrimeElements,
-  Settings,
-} from "./views";
+import { CustomElements, GenerateTheme, MuiView, Settings } from "./views";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -32,10 +26,6 @@ const router = createBrowserRouter([
       {
         path: "mui-elements",
         element: <MuiView />,
-      },
-      {
-        path: "prime-elements",
-        element: <PrimeElements />,
       },
       {
         path: "custom-elements",

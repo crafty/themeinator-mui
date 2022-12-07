@@ -1,6 +1,7 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { createTheme } from "@mui/material/styles";
 
+import overrides from "./overrides";
 import colorTokens from "./color-tokens";
 
 export const MODES = ["dark", "light"];
@@ -14,8 +15,16 @@ export const PALETTE_NAMES = [
 
 export const tokens = (mode, palette) => colorTokens[palette][mode];
 
+const getComponentOverrides = (palette, colors) => {
+  if (palette === "pointsBetColorTokens")
+    return overrides.generatePointsBetOverrides(colors);
+
+  return {};
+};
+
 export const themeSettings = (mode, palette) => {
   const colors = tokens(mode, palette);
+  const componentOverrides = getComponentOverrides(palette, colors);
 
   return {
     palette: {
@@ -107,6 +116,7 @@ export const themeSettings = (mode, palette) => {
           root: { padding: "16px" },
         },
       },
+      ...componentOverrides,
     },
   };
 };
