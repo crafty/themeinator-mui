@@ -4,7 +4,7 @@ export default (colors) => ({
       root: { border: `3px solid ${colors.redAccent[500]}` },
     },
   },
-  ThemedCardActions: {
+  ThemedButton: {
     styleOverrides: {
       root: { backgroundColor: "Cyan" },
     },

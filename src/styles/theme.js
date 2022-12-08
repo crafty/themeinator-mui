@@ -19,6 +19,9 @@ const getComponentOverrides = (palette, colors) => {
   if (palette === "pointsBetColorTokens")
     return overrides.generatePointsBetOverrides(colors);
 
+  if (palette === "randomColorTokens")
+    return overrides.generateRandomColorsOverrides(colors);
+
   return {};
 };
 
