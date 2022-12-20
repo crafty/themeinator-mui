@@ -1,19 +1,13 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext } from "react";
 import { createTheme } from "@mui/material/styles";
 
-import overrides from "./overrides";
-import colorTokens from "./color-tokens";
+import colorTokens from "../styles/color-tokens";
+import overrides from "../styles/overrides";
 
-export const MODES = ["dark", "light"];
-
-export const PALETTE_NAMES = [
-  "randomColorTokens",
-  "firstBetColorTokens",
-  "pointsBetColorTokens",
-  "nordColorTokens",
-];
-
-export const tokens = (mode, palette) => colorTokens[palette][mode];
+import OpacityIcon from "@mui/icons-material/Opacity";
+import PaidIcon from "@mui/icons-material/Paid";
+import CasinoIcon from "@mui/icons-material/Casino";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
 
 const getComponentOverrides = (palette, colors) => {
   if (palette === "pointsBetColorTokens")
@@ -25,10 +19,27 @@ const getComponentOverrides = (palette, colors) => {
   return {};
 };
 
-export const themeSettings = (mode, palette) => {
-  const colors = tokens(mode, palette);
+const DARK_MODE = "dark";
+const LIGHT_MODE = "light";
+
+const THEME_NAMES = [
+  "randomColorTokens",
+  "firstBetColorTokens",
+  "pointsBetColorTokens",
+  "nordColorTokens",
+];
+
+export const DEFAULT_THEME_OPTIONS = [
+  { name: THEME_NAMES[0], icon: <OpacityIcon /> },
+  { name: THEME_NAMES[1], icon: <PaidIcon /> },
+  { name: THEME_NAMES[2], icon: <CasinoIcon /> },
+  { name: THEME_NAMES[3], icon: <AcUnitIcon /> },
+];
+
+export const themeSettings = (mode, palette, colors) => {
   const componentOverrides = getComponentOverrides(palette, colors);
 
+  //console.log("colors: ", colors);
   return {
     palette: {
       mode,
@@ -124,30 +135,22 @@ export const themeSettings = (mode, palette) => {
   };
 };
 
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
-});
-
-export const useMode = () => {
-  const [modeName, setModeName] = useState(MODES[0]);
-  const [paletteName, setPaletteName] = useState(PALETTE_NAMES[3]);
-
-  const [theme, setTheme] = useState(() =>
-    createTheme(themeSettings(modeName, paletteName))
-  );
-
-  useEffect(() => {
-    setTheme(() => createTheme(themeSettings(modeName, paletteName)));
-  }, [modeName, paletteName]);
-
-  const mode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setModeName((prev) => (prev === MODES[0] ? MODES[1] : MODES[0]));
-      },
-    }),
-    []
-  );
-
-  return [theme, mode, setPaletteName];
+export const DEFAULT_THEME_DATA = {
+  themeOptions: DEFAULT_THEME_OPTIONS,
+  tokenOptions: colorTokens,
+  tokens: colorTokens[THEME_NAMES[0]][DARK_MODE],
+  paletteName: THEME_NAMES[0],
+  mode: DARK_MODE,
+  theme: createTheme(
+    themeSettings(
+      DARK_MODE,
+      THEME_NAMES[0],
+      colorTokens[THEME_NAMES[0]][DARK_MODE]
+    )
+  ),
 };
+
+export const ThemeDataContext = createContext({
+  themeData: DEFAULT_THEME_DATA,
+  setThemeData: () => {},
+});

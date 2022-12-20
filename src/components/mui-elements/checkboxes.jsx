@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { useTheme } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
@@ -17,12 +19,12 @@ import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import BatteryFullIcon from "@mui/icons-material/BatteryFull";
 
 import { Flox } from "@/styles/shared";
-
-import { tokens } from "@/styles/theme";
+import { ThemeDataContext } from "../../context/theme-options-context";
 
 const CheckboxExamples = () => {
-  const { palette } = useTheme();
-  const { orangeAccent } = tokens(palette.mode, palette.name);
+  const { themeData } = useContext(ThemeDataContext);
+  const { tokens } = themeData;
+  const { orangeAccent } = tokens;
 
   return (
     <Paper>

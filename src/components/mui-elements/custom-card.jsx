@@ -10,7 +10,7 @@ import styled from "@mui/material/styles/styled";
 const ThemedCard = styled(Card, {
   name: "ThemedCard",
   slot: "Root",
-  overridesResolver: (props, styles) => [styles.root],
+  overridesResolver: (_, styles) => [styles.root],
 })(
   ({ theme }) => `
     display: flex;

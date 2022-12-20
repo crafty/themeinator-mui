@@ -17,20 +17,26 @@ import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { SideBarContainer, ExpandIcon } from "./styles";
-import { ColorModeContext } from "../../styles/theme";
+import { ThemeDataContext } from "../../context/theme-options-context";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
-  const { toggleColorMode } = useContext(ColorModeContext);
-  const { palette } = useTheme();
+  const { themeData, setThemeData } = useContext(ThemeDataContext);
+  const {
+    mode,
+    theme: { palette },
+  } = themeData;
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const onToggleColorMode = (e) => {
     e.stopPropagation();
-    toggleColorMode();
+    setThemeData({
+      ...themeData,
+      mode: mode === "light" ? "dark" : "light",
+    });
   };
 
   const handleNavigate = useCallback((e, page) => {
@@ -38,7 +44,7 @@ const Sidebar = () => {
     navigate(page, { replace: true }), [navigate];
   });
 
-  const isLightMode = palette.mode === "light";
+  const isLightMode = mode === "light";
   const iconSize = "medium";
 
   return (
