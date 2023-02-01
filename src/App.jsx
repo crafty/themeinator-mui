@@ -28,6 +28,8 @@ const App = () => {
   const [themeData, setThemeData] = useState(DEFAULT_THEME_DATA);
   const { theme, themeOptions, paletteName, tokenOptions, mode } = themeData;
 
+  console.log(themeData);
+
   const { pathname } = useLocation();
 
   const setPaletteName = (name) => {

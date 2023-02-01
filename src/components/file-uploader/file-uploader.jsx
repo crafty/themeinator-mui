@@ -37,6 +37,24 @@ const DragAndDropContainer = styled("div", {
     `
 );
 
+const ColorSwatch = styled(
+  "div",
+  {}
+)(
+  ({ theme, color }) => `
+    width: 40px;
+    height: 40px;
+    background-color: ${color};
+    transition: all ease 0.2s;
+    font-size: 0px;
+
+    :hover {
+      transform: scale(3);
+      font-size: 8px;
+    }
+    `
+);
+
 export const FileUploader = () => {
   const [dragging, setDragging] = useState(false);
   const [generatedColorTokens, setGeneratedColorTokens] = useState({
@@ -76,6 +94,8 @@ export const FileUploader = () => {
         const generatedColorTokens = generateColorTokens(primary, secondary);
 
         setGeneratedColorTokens(generatedColorTokens);
+
+        console.log(generatedColorTokens);
 
         setThemeData({
           ...themeData,
@@ -160,39 +180,7 @@ export const FileUploader = () => {
             gap: "20px",
           }}
         >
-          <span>Dark Palette</span>
-          {lightColorLabels.map((colorName) => {
-            const colors = Object.values(light[colorName]);
-
-            return (
-              <section key={colorName}>
-                <span>{colorName}</span>
-
-                <section style={{ display: "flex", gap: "5px" }}>
-                  {colors.map((color, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        backgroundColor: color,
-                      }}
-                    />
-                  ))}
-                </section>
-              </section>
-            );
-          })}
-        </section>
-
-        <section
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          <span>Light Palette</span>
+          <span>Generated Palette</span>
           {darkColorLabels.map((colorName) => {
             const colors = Object.values(dark[colorName]);
 
@@ -200,16 +188,11 @@ export const FileUploader = () => {
               <section key={colorName}>
                 <span>{colorName}</span>
 
-                <section style={{ display: "flex", gap: "5px" }}>
+                <section style={{ display: "flex", gap: "15px" }}>
                   {colors.map((color, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        backgroundColor: color,
-                      }}
-                    />
+                    <ColorSwatch key={i} color={color}>
+                      {color}
+                    </ColorSwatch>
                   ))}
                 </section>
               </section>

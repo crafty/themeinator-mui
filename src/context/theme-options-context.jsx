@@ -135,17 +135,19 @@ export const themeSettings = (mode, palette, colors) => {
   };
 };
 
+const INITIAL_THEME = THEME_NAMES[0];
+
 export const DEFAULT_THEME_DATA = {
   themeOptions: DEFAULT_THEME_OPTIONS,
   tokenOptions: colorTokens,
-  tokens: colorTokens[THEME_NAMES[0]][DARK_MODE],
-  paletteName: THEME_NAMES[0],
+  tokens: colorTokens[INITIAL_THEME][DARK_MODE],
+  paletteName: INITIAL_THEME,
   mode: DARK_MODE,
   theme: createTheme(
     themeSettings(
       DARK_MODE,
-      THEME_NAMES[0],
-      colorTokens[THEME_NAMES[0]][DARK_MODE]
+      INITIAL_THEME,
+      colorTokens[INITIAL_THEME][DARK_MODE]
     )
   ),
 };
