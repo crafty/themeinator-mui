@@ -95,20 +95,22 @@ export const FileUploader = () => {
 
         setGeneratedColorTokens(generatedColorTokens);
 
-        console.log(generatedColorTokens);
+        const generatedThemesName = `${tokensName}-${
+          themeData.themeOptions.length - 4
+        }`;
 
         setThemeData({
           ...themeData,
           themeOptions: [
             ...themeData.themeOptions,
             {
-              name: `${tokensName}-${themeData.themeOptions.length - 4}`,
+              name: generatedThemesName,
               icon: <AutoFixHighIcon />,
             },
           ],
           tokenOptions: {
             ...themeData.tokenOptions,
-            [tokensName]: generatedColorTokens,
+            [generatedThemesName]: generatedColorTokens,
           },
         });
       } catch (e) {
