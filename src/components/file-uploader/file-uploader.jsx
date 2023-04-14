@@ -13,7 +13,6 @@ import {
 import { ThemeDataContext } from "../../context/theme-options-context";
 
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
-import { useColorTokens } from "../../hooks/use-color-tokens";
 
 const DragAndDropContainer = styled("div", {
   name: "div",
@@ -61,7 +60,6 @@ export const FileUploader = () => {
     dark: {},
     light: {},
   });
-  const [tokensName, setThemeName] = useState("generatedColorTokens");
 
   const { themeData, setThemeData } = useContext(ThemeDataContext);
 
@@ -95,7 +93,7 @@ export const FileUploader = () => {
 
         setGeneratedColorTokens(generatedColorTokens);
 
-        const generatedThemesName = `${tokensName}-${
+        const generatedName = `generatedTheme-${
           themeData.themeOptions.length - 4
         }`;
 
@@ -104,13 +102,13 @@ export const FileUploader = () => {
           themeOptions: [
             ...themeData.themeOptions,
             {
-              name: generatedThemesName,
+              name: generatedName,
               icon: <AutoFixHighIcon />,
             },
           ],
           tokenOptions: {
             ...themeData.tokenOptions,
-            [generatedThemesName]: generatedColorTokens,
+            [generatedName]: generatedColorTokens,
           },
         });
       } catch (e) {

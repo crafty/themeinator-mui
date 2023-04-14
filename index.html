@@ -2,12 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/themeinator.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Themeinator</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const iconSvg = document.querySelector('link[rel="icon"]');
+
+      const themeChange = (event) => {
+        console.log(event, iconSvg);
+        if (event.matches) {
+          iconSvg.setAttribute("href", "favicon-dark.png");
+        } else {
+          iconSvg.setAttribute("href", "favicon-light.png");
+        }
+      };
+
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", themeChange);
+    </script>
   </body>
 </html>

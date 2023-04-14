@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DiamondSharpIcon from "@mui/icons-material/DiamondSharp";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import CategoryIcon from "@mui/icons-material/Category";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
@@ -14,7 +13,6 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 import { Flox } from "@/styles/shared.js";
 import { Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
 import { SideBarContainer, ExpandIcon } from "./styles";
 import { ThemeDataContext } from "../../context/theme-options-context";
